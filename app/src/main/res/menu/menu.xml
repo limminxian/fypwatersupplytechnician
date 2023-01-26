@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/tasks"
+        android:title="Tasks"
+        android:icon="@drawable/ic_task" />
+    <item
+        android:id="@+id/nearMe"
+        android:title="Water Usage"
+        android:icon="@drawable/ic_water_usage" />
+</menu>

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".viewWaterUsageActivity"
+    android:background="#f1f1f1">
+
+    <TextView
+        android:id="@+id/usernameView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="30dp"
+        android:textColor="@color/black"/>
+
+    <ImageButton
+        android:id="@+id/logoutButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:srcCompat="@drawable/ic_logout"
+        android:background="@null"
+        android:layout_alignRight="@+id/usernameView"/>
+
+    <TextView
+        android:id="@+id/areaTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Area: "
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="50dp"
+        />
+
+    <Spinner
+        android:id="@+id/areaSpinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="60dp"
+        />
+
+    <TextView
+        android:id="@+id/houseTypeTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="House Type:"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="100dp"
+        android:layout_marginStart="50dp"
+        />
+
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="170dp"
+        android:layout_marginTop="100dp"
+        />
+
+    <TextView
+        android:id="@+id/textViewmonth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="135dp"
+        android:text="Water usage for December 2022"
+        android:paddingStart="15dp"
+        android:textAlignment="textStart"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/waterUsageAdd"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginRight="25dp"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="8dp">
+
+        <TextView
+            android:id="@+id/addressTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="5sp"
+            android:fontFamily="@font/alegreya_sans"
+            android:text="Address: Blk 322 Anson Road"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/waterUsageEdel"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="230dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        app:cardCornerRadius="3dp"
+        app:cardElevation="8dp">
+
+        <TextView
+            android:id="@+id/addressTv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Address: Blk 342 Anson Road"
+            android:layout_marginTop="12dp"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="10sp"
+            android:layout_marginBottom="5sp"
+            android:fontFamily="@font/alegreya_sans"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/blue_200"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu"/>
+
+</RelativeLayout>
