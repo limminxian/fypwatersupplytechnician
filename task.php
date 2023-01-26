@@ -1,49 +1,30 @@
 <?php
     $conn = mysqli_connect("localhost", "root", "", "fyp");
-    if (mysqli_connect_errno()) {
-        echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        die();
-    }
+    if($conn){
+         // table - field
+        // homeowner - name (from user table)
+        // ticket - type
+        // ticket - description
+        // ticket - status
+        // where clause = area (from homeowner table)
 
-    //creating a query
-    //$stmt = $conn->prepare("SELECT ID, HOMEOWNERNAME, SERVICETYPE, DESCRIPTION, ADDRESS, STATUS FROM tasktest;");
-    $stmt = $conn->prepare("select h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, u.NAME, t.STATUS, t.DESCRIPTION, k.NAME as SERVICETYPE
-    from homeowner h, users u, ticket t, tickettype k
-    where h.ID = u.ID  
-    and h.ID = t.HOMEOWNER
-    and t.TYPE = k.ID;");
-    // table - field
-    // homeowner - name (from user table)
-    // ticket - type
-    // ticket - description
-    // ticket - status
-    // where clause = area (from homeowner table)
-    
+        $selectedarea = $_GET['area'];
 
+        $sql = "select h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA, u.NAME, t.STATUS, t.DESCRIPTION, k.NAME as SERVICETYPE
+            from users u 
+            inner join homeowner h on u.ID = h.ID
+            inner join ticket t on h.ID = t.HOMEOWNER
+            inner join tickettype k on t.TYPE = k.ID
+            where h.area = '$selectedarea'";
 
-
-    //executing the query 
-    $stmt->execute();
-    
-    //binding results to the query 
-    $stmt->bind_result($STREET, $BLOCKNO, $UNITNO, $POSTALCODE, $NAME, $STATUS, $DESCRIPTION, $SERVICETYPE);
-    
-    $tasks = array(); 
-    
-    //traversing through all the result 
-    while($stmt->fetch()){
-        $task = array();
-        $task['STREET'] = $STREET; 
-        $task['BLOCKNO'] = $BLOCKNO;
-        $task['UNITNO'] = $UNITNO;
-        $task['POSTALCODE'] = $POSTALCODE; 
-        $task['NAME'] = $NAME; 
-        $task['STATUS'] = $STATUS; 
-        $task['DESCRIPTION'] = $DESCRIPTION; 
-        $task['SERVICETYPE'] = $SERVICETYPE; 
-        array_push($tasks, $task);
-    }
-    
-    //displaying the result in json format 
-    echo json_encode($tasks);
+        $res = mysqli_query($conn, $sql);
+        $tasks = array();
+        if($res) {
+            while($row = mysqli_fetch_assoc($res)) {
+                $tasks[] = array("status" => "success", "message" => "Data fetched", "STREET" => $row['STREET'], "BLOCKNO" => $row['BLOCKNO'], "UNITNO" => $row['UNITNO'], "POSTALCODE" => $row['POSTALCODE'], 
+                "AREA" => $row['AREA'], "NAME" => $row['NAME'], "STATUS" => $row ['STATUS'], "DESCRIPTION" => $row['DESCRIPTION'], "SERVICETYPE" => $row['SERVICETYPE']);
+            }
+        } else $tasks = array("status" => "failed", "message" => "Having trouble fetching the data");
+    } else $tasks = array("status" => "failed", "message" => "Database connection failed");
+    echo json_encode(array("tasks" => $tasks), JSON_PRETTY_PRINT);
 ?>

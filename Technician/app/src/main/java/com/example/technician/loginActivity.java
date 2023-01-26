@@ -36,10 +36,6 @@ public class loginActivity extends AppCompatActivity {
         Button loginBtn = findViewById(R.id.loginBtn);
         sharedPreferences = getSharedPreferences("MyAppName", MODE_PRIVATE);
         Intent intent = new Intent(getApplicationContext(), viewAssignedTasksActivity.class);
-        if (sharedPreferences.getString("logged","false").equals("true")){
-            startActivity(intent);
-            finish();
-        }
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
