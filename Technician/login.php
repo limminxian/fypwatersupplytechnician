@@ -3,8 +3,8 @@
         $EMAIL = $_POST['EMAIL'];
         $PASSWORD = $_POST['PASSWORD'];
         $result = array();
-        $conn = mysqli_connect("localhost", "root", "", "fyp");
-        //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
+        //$conn = mysqli_connect("localhost", "root", "", "fyp");
+        $conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
         if ($conn) {
             $sql = "select u.NAME, u.EMAIL, u.PASSWORD, u.TYPE, u.STATUS, r.name as ROLENAME from users u
             inner join role r on u.TYPE = r.ID
