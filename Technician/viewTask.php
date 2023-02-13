@@ -8,7 +8,7 @@
             from users u 
             inner join homeowner h on u.ID = h.ID
             inner join ticket t on h.ID = t.HOMEOWNER
-            inner join tickettype k on t.TYPE = k.ID
+            inner join servicetype k on t.TYPE = k.ID
             where t.ID = '$ticketID'";
 
         $res = mysqli_query($conn, $sql);

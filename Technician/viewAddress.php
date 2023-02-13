@@ -4,8 +4,9 @@
     //$conn = mysqli_connect("localhost", "root", "", "fyp");
     if($conn) {
         $selectedarea = $_GET['area'];
-        $sql = "select ID, STREET, BLOCKNO, UNITNO, POSTALCODE, AREA, HOUSETYPE
-            from homeowner
+        $sql = "select h.ID, h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA, h.HOUSETYPE, h.SUBSCRIBE
+            from homeowner h
+            inner join company c on h.SUBSCRIBE = c.ID
             where area = '$selectedarea'
             group by POSTALCODE";
         $res = mysqli_query($conn, $sql);
