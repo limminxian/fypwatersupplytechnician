@@ -15,14 +15,18 @@
         $selectedarea = $_GET['area'];
         $technicianId = $_GET['technicianID'];
 
-        // $sql1 ="select t.HOMEOWNER, t.STATUS, t.TYPE, t.DESCRIPTION, t.SERVICEDATE, i.NAME
-        // from ticket t, tickettype i, task u, 
-        // where t.type = i.id and u.ticket = t.type";
+        // $sql = "select t.ID, t.STATUS, t.DESCRIPTION, t.SERVICEDATE, y.NAME as SERVICETYPE, u.NAME, h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA
+        // from ticket t 
+        // inner join task a on t.ID = a.TICKET 
+        // inner join tickettype y on t.TYPE = y.ID 
+        // inner join users u on t.HOMEOWNER = u.ID 
+        // inner join homeowner h on t.HOMEOWNER = h.ID 
+        // where a.TECHNICIAN = '$technicianId' and h.area = '$selectedarea'";
 
         $sql = "select t.ID, t.STATUS, t.DESCRIPTION, t.SERVICEDATE, y.NAME as SERVICETYPE, u.NAME, h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA
         from ticket t 
         inner join task a on t.ID = a.TICKET 
-        inner join tickettype y on t.TYPE = y.ID 
+        inner join servicetype y on t.TYPE = y.ID 
         inner join users u on t.HOMEOWNER = u.ID 
         inner join homeowner h on t.HOMEOWNER = h.ID 
         where a.TECHNICIAN = '$technicianId' and h.area = '$selectedarea'";
