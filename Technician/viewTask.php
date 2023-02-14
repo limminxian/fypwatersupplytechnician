@@ -16,7 +16,7 @@
         if($res) {
             while($row = mysqli_fetch_assoc($res)) {
                 $tasks[] = array("status" => "success", "message" => "Data fetched", "STREET" => $row['STREET'], "BLOCKNO" => $row['BLOCKNO'], "UNITNO" => $row['UNITNO'], "POSTALCODE" => $row['POSTALCODE'], 
-                "AREA" => $row['AREA'], "NAME" => $row['NAME'], "STATUS" => $row ['STATUS'], "DESCRIPTION" => $row['DESCRIPTION'], "SERVICETYPE" => $row['SERVICETYPE'], "ID" => $row['ID'], "HOMEOWNERID" => row['HOMEOWNERID']);
+                "AREA" => $row['AREA'], "NAME" => $row['NAME'], "STATUS" => $row ['STATUS'], "DESCRIPTION" => $row['DESCRIPTION'], "SERVICETYPE" => $row['SERVICETYPE'], "ID" => $row['ID'], "HOMEOWNERID" => $row['HOMEOWNERID']);
             }
         } else $tasks = array("status" => "failed", "message" => "Having trouble fetching the data");
     } else $tasks = array("status" => "failed", "message" => "Database connection failed");
