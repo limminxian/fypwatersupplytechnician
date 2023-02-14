@@ -6,8 +6,15 @@ if (!empty($_POST['serial']) && !empty($_POST['homeownerId']) && !empty($_POST['
     $serial = $_POST['serial'];
     $homeownerId = $_POST['homeownerId'];
     $taskId = $_POST['taskId'];
+    $serviceType = $_POST['serviceType'];
+
     if($conn) {
-        $sql = "insert into equipment (EQUIPMENT, HOMEOWNER, TASK) values ('".$serial."', '".$homeownerId."', '".$taskId."')";
+        if($serviceType == "installation") {
+            $sql = "insert into equipment (EQUIPMENT, HOMEOWNER, INSTALLTASK) values ('".$serial."', '".$homeownerId."', '".$taskId."')";
+        } else echo "Installation row cannot be added";
+        if($serviceType == "uninstallation") {
+            $sql = "insert into equipment (EQUIPMENT, HOMEOWNER, UNINSTALLTASK) values ('".$serial."', '".$homeownerId."', '".$taskId."')";
+        } else echo "Uninstallation row cannot be added";
         $res = mysqli_query($conn, $sql);
         if($res) {
             echo "Equipment row is added";

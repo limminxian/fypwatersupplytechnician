@@ -3,25 +3,8 @@
     //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
     //$conn = mysqli_connect("localhost", "root", "", "fyp");
     if($conn){
-         // table - field
-        // homeowner - name (from user table)
-        // ticket - type
-        // ticket - description
-        // ticket - status
-        // where clause = area (from homeowner table)
-        // task - id
-        // 
-
         $selectedarea = $_GET['area'];
         $technicianId = $_GET['technicianID'];
-
-        // $sql = "select t.ID, t.STATUS, t.DESCRIPTION, t.SERVICEDATE, y.NAME as SERVICETYPE, u.NAME, h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA
-        // from ticket t 
-        // inner join task a on t.ID = a.TICKET 
-        // inner join tickettype y on t.TYPE = y.ID 
-        // inner join users u on t.HOMEOWNER = u.ID 
-        // inner join homeowner h on t.HOMEOWNER = h.ID 
-        // where a.TECHNICIAN = '$technicianId' and h.area = '$selectedarea'";
 
         $sql = "select t.ID, t.STATUS, t.DESCRIPTION, t.SERVICEDATE, y.NAME as SERVICETYPE, u.NAME, h.ID as HOMEOWNERID, h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA, a.ID as TASKID
         from ticket t 
@@ -30,13 +13,6 @@
         inner join users u on t.HOMEOWNER = u.ID 
         inner join homeowner h on t.HOMEOWNER = h.ID 
         where a.TECHNICIAN = '$technicianId' and h.area = '$selectedarea'";
-
-        // $sql = "select h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA, u.NAME, t.STATUS, t.DESCRIPTION, k.NAME as SERVICETYPE, t.ID
-        //     from users u 
-        //     inner join homeowner h on u.ID = h.ID
-        //     inner join ticket t on h.ID = t.HOMEOWNER
-        //     inner join tickettype k on t.TYPE = k.ID
-        //     where h.area = '$selectedarea'";
 
         $res = mysqli_query($conn, $sql);
         $tasks = array();
