@@ -11,14 +11,18 @@ if (!empty($_POST['serial']) && !empty($_POST['homeownerId']) && !empty($_POST['
     if($conn) {
         if($serviceType == "installation") {
             $sql = "insert into equipment (EQUIPMENT, HOMEOWNER, INSTALLTASK) values ('".$serial."', '".$homeownerId."', '".$taskId."')";
+            $res = mysqli_query($conn, $sql);
+            if($res) {
+                echo "Equipment row is added";
+            }
         } else echo "Installation row cannot be added";
         if($serviceType == "uninstallation") {
             $sql = "insert into equipment (EQUIPMENT, HOMEOWNER, UNINSTALLTASK) values ('".$serial."', '".$homeownerId."', '".$taskId."')";
+            $res = mysqli_query($conn, $sql);
+            if($res) {
+                echo "Equipment row is added";
+            }
         } else echo "Uninstallation row cannot be added";
-        $res = mysqli_query($conn, $sql);
-        if($res) {
-            echo "Equipment row is added";
-        }
     } else echo "Connection failed";
 } else echo "Serial, HomeownerID and taskID is null";
 ?>
