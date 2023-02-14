@@ -23,7 +23,7 @@
         // inner join homeowner h on t.HOMEOWNER = h.ID 
         // where a.TECHNICIAN = '$technicianId' and h.area = '$selectedarea'";
 
-        $sql = "select t.ID, t.STATUS, t.DESCRIPTION, t.SERVICEDATE, y.NAME as SERVICETYPE, u.NAME, h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA
+        $sql = "select t.ID, t.STATUS, t.DESCRIPTION, t.SERVICEDATE, y.NAME as SERVICETYPE, u.NAME, h.ID as HOMEOWNERID, h.STREET, h.BLOCKNO, h.UNITNO, h.POSTALCODE, h.AREA, a.ID as TASKID
         from ticket t 
         inner join task a on t.ID = a.TICKET 
         inner join servicetype y on t.TYPE = y.ID 
@@ -43,7 +43,7 @@
         if($res) {
             while($row = mysqli_fetch_assoc($res)) {
                 $tasks[] = array("status" => "success", "message" => "Data fetched", "STREET" => $row['STREET'], "BLOCKNO" => $row['BLOCKNO'], "UNITNO" => $row['UNITNO'], "POSTALCODE" => $row['POSTALCODE'], 
-                "AREA" => $row['AREA'], "NAME" => $row['NAME'], "STATUS" => $row ['STATUS'], "DESCRIPTION" => $row['DESCRIPTION'], "SERVICETYPE" => $row['SERVICETYPE'], "ID" => $row['ID'], "SERVICEDATE" => $row['SERVICEDATE']);
+                "AREA" => $row['AREA'], "NAME" => $row['NAME'], "STATUS" => $row ['STATUS'], "DESCRIPTION" => $row['DESCRIPTION'], "SERVICETYPE" => $row['SERVICETYPE'], "ID" => $row['ID'], "SERVICEDATE" => $row['SERVICEDATE'], "TASKID" => row['TASKID'], "HOMEOWNERID" => row['HOMEOWNERID']);
             }
         } else $tasks = array("status" => "failed", "message" => "Having trouble fetching the data");
     } else $tasks = array("status" => "failed", "message" => "Database connection failed");
