@@ -33,7 +33,6 @@
                     $homeowner = $row['HOMEOWNER'];
                     $serviceDate = $row['SERVICEDATE'];
                     $serviceRate = $row['RATE'];
-                    echo "Service Date: " + $serviceDate;
                     $count++;
                     $sql2 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT)  VALUES ($serviceDate, $homeowner, $type, $serviceRate)";
 
