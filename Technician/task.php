@@ -12,7 +12,8 @@
         inner join servicetype y on t.TYPE = y.ID 
         inner join users u on t.HOMEOWNER = u.ID 
         inner join homeowner h on t.HOMEOWNER = h.ID 
-        where a.TECHNICIAN = '$technicianId' and h.area = '$selectedarea'";
+        where a.TECHNICIAN = '$technicianId' and h.area = '$selectedarea'
+        order by t.STATUS desc";
 
         $res = mysqli_query($conn, $sql);
         $tasks = array();
