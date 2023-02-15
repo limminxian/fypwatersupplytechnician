@@ -29,35 +29,20 @@
             $count = 0;
             while($row = mysqli_fetch_assoc($res1)) {
                 if($count == 0) {
-                    $type = $row['TYPE']; //change 
+                    $type = $row['TYPE'];  
                     $homeowner = $row['HOMEOWNER'];
                     $serviceDate = $row['SERVICEDATE'];
                     $serviceRate = $row['RATE'];
+                    echo "Service Date: " + $serviceDate;
                     $count++;
-
                     $sql2 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT)  VALUES ($serviceDate, $homeowner, $type, $serviceRate)";
 
                     $res2 = mysqli_query($conn, $sql2);
                     if($res2) {
                         echo "Successfully inserted bill";
                     } else echo "Having trouble inserting the data into bill table";
-                }
-                
+                } 
             } 
         } else echo "Having trouble fetching the data for generating bill";
     } else echo "Connection failed";
-
-
-
-
-
-    // $waterSql = "SELECT RECORDDATE, HOMEOWNER, WATERUSAGE
-    // FROM waterusage";
-    // $serviceSql = "SELECT s.NAME, r.RATE
-    // FROM servicetype s inner join servicerate r on s.ID = r.SERVICE
-    // where s.EFFECTDATE = (SELECT MAX(s.EFFECTDATE)
-    // from servicetype)";
-    // $ticketSql = "SELECT ";
-    // $billSql = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT)  VALUES ('".$."', '".$."', '".$."')";
-
 ?>
