@@ -4,8 +4,7 @@
         $PASSWORD = $_POST['PASSWORD'];
         $result = array();
         //$conn = mysqli_connect("localhost", "root", "", "fyp");
-        //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
-        $conn = mysqli_connect("ec2-3-225-213-67.compute-1.amazonaws.com:5432", "lbftgzbfbhpkxk", "7730fd74a05533e54625120ba59d494a060111ce887ccd836c95a9d7494ed0b2", "d1rhm1e7kg5b5e");
+        $conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
         //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
         if ($conn) {
             $sql = "select u.NAME, u.EMAIL, u.PASSWORD, u.TYPE, u.STATUS, r.name as ROLENAME, u.ID from users u
