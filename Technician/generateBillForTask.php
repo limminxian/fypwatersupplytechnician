@@ -28,7 +28,7 @@
         if($res1) {
             $count = 0;
             while($row = mysqli_fetch_assoc($res1)) {
-                if(count == 0) {
+                if($count == 0) {
                     $type = $row['TYPE']; //change 
                     $homeowner = $row['HOMEOWNER'];
                     $serviceDate = $row['SERVICEDATE'];
