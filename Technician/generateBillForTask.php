@@ -33,11 +33,10 @@
                     $homeowner = $row['HOMEOWNER'];
                     $serviceDate = $row['SERVICEDATE'];
                     $serviceRate = $row['RATE'];
-                    echo "Billing Date:";
                     $count++;
                     $sql2 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT)  VALUES ($serviceDate, $homeowner, $type, $serviceRate)";
-
                     $res2 = mysqli_query($conn, $sql2);
+                    echo ($serviceDate);
                     if($res2) {
                         echo "Successfully inserted bill";
                     } else echo "Having trouble inserting the data into bill table";
