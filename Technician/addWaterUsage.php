@@ -25,7 +25,7 @@
 
     $sql2 = "select HOMEOWNER, `WATERUSAGE(L)`, RECORDDATE
     from waterusage
-    where id=$id";
+    where HOMEOWNER = $id";
 
     if($conn) {
         $res1 = mysqli_query($conn, $sql1);
