@@ -1,16 +1,60 @@
 <?php
-if (!empty($_POST['homeownerId'] && !empty($_POST['waterUsage']))) {
+    $id = $_POST['homeownerId'];
+    $waterUsage = $_POST['waterUsage'];
+
     $conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
     //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
     //$conn = mysqli_connect("localhost", "root", "", "fyp");
-    $id = $_POST['homeownerId'];
-    $waterUsage = $_POST['waterUsage'];
-    if($conn) {
+    
+
+    //insert waterusage
+    iF($conn) {
         $sql = "insert into waterusage (HOMEOWNER, WATERUSAGE) values ('".$id."', '".$waterUsage."')";
         $res = mysqli_query($conn, $sql);
         if($res) {
             echo "Water usage added successfully";
-        }
+        } else echo "Water usage not added successfully";
     } else echo "Connection failed";
-} else echo "HomeownerId and water usage is null";
+    
+
+    $sql1 = "select r.RATE, s.ID
+    from servicetype s inner join servicerate r
+    on s.ID = r.SERVICE
+    where s.NAME = 'water supply'
+    and r.EFFECTDATE = (SELECT MAX(r.EFFECTDATE) from servicerate r inner join servicetype s on s.ID = r.SERVICE where s.NAME = 'water supply');";
+
+    $sql2 = "select HOMEOWNER, WATERUSAGE, RECORDDATE
+    from waterusage
+    where id=$id";
+
+    if($conn) {
+        $res1 = mysqli_query($conn, $sql1);
+        if($res1) {
+            while($row1 = mysqli_fetch_assoc($res1)) {
+                
+                $rate = $row1['RATE'];
+                $type = $row1['ID'];
+
+                $res2 = mysqli_query($conn, $sql2);
+
+                if($res2) {
+                    while($row2 = mysqli_fetch_assoc($res2)) {
+                        $homeOwner = $row2['HOMEOWNER'];
+                        $waterUsage = $row2['WATERUSAGE'];
+                        $recordDate = $row2['RECORDDATE'];
+
+                        $amount = $rate * $waterUsage;
+
+                        $sql3 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT)  VALUES 
+                        (DATEADD(day, 1, '".$recordDate."'), '".$homeOwner."', '".$type."'., '".$amount."')";
+                        $res3 = mysqli_query($conn, $sql3);
+                        
+                        if($res3) {
+                            echo "Successfully inserted bill";
+                        } else echo "Having trouble inserting the data into bill table";
+                    }
+                } else echo "Having trouble getting date from waterusage table";
+            }
+        } else echo "Having trouble fetching the data rom servicerate table";
+    } else echo "Connection failed";
 ?>
