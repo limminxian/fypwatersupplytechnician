@@ -6,7 +6,7 @@
         #hdb-apartment - unit # & id
         #landed - street & id
         $postalCode = $_GET['postalCode'];
-        $sql = "select ID, STREET, UNITNO, HOUSETYPE, w.WATERUSAGE(L)
+        $sql = "select ID, STREET, UNITNO, HOUSETYPE, WATERUSAGE(L)
             from homeowner h left join waterusage w on h.ID = w.HOMEOWNER
             where POSTALCODE = '$postalCode'";
         $res = mysqli_query($conn, $sql);
