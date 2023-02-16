@@ -20,7 +20,7 @@
                     echo "Water usage editted successfully";
                 } else echo "Water usage not editted successfully";
             }
-        } else echo "Not able to fetch maximum date"
+        } else echo "Not able to fetch maximum date";
     } else echo "Connection failed";
     
 
