@@ -47,7 +47,7 @@
                         $amount = $rate * $waterUsage;
 
                         $sql3 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT)  VALUES 
-                        (DATEADD(day, 1, $recordDate), '".$homeOwner."', '".$type."'., '".$amount."')";
+                        (`DATEADD(day, 1, $recordDate)`, '".$homeOwner."', '".$type."'., '".$amount."')";
                         $res3 = mysqli_query($conn, $sql3);
                         
                         if($res3) {
