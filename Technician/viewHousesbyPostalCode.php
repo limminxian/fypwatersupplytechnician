@@ -6,7 +6,7 @@
         #hdb-apartment - unit # & id
         #landed - street & id
         $postalCode = $_GET['postalCode'];
-        $sql = "select ID, STREET, UNITNO, HOUSETYPE
+        $sql = "select h.ID, STREET, UNITNO, HOUSETYPE
             from homeowner h
             inner join company c on h.SUBSCRIBE = c.ID
             where POSTALCODE = '$postalCode'";
