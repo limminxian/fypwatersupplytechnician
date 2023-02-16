@@ -1,6 +1,7 @@
 <?php
     $id = $_POST['homeownerId'];
     $waterUsage = $_POST['waterUsage'];
+    $recordDate = $_POST['sqlDate'];
 
     $conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
     //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
@@ -9,7 +10,7 @@
 
     //insert waterusage
     iF($conn) {
-        $sql = "insert into waterusage (HOMEOWNER, `WATERUSAGE(L)`) values ('".$id."', '".$waterUsage."')";
+        $sql = "insert into waterusage (RECORDDATE, HOMEOWNER, `WATERUSAGE(L)`) values ('".$recordDate."', '".$id."', '".$waterUsage."')";
         $res = mysqli_query($conn, $sql);
         if($res) {
             echo "Water usage added successfully";
