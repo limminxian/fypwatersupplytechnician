@@ -46,7 +46,7 @@
                         $amount = $rate * $waterUsage;
 
                         $sql3 = "select BILLINGDATE from bill where HOMEOWNER = '".$id."' 
-                        and BILLINGDATE = (SELECT MAX(BILLINGDATE) from bill where HOMEOWNER = $id";
+                        and BILLINGDATE = (SELECT MAX(BILLINGDATE) from bill where HOMEOWNER = $id)";
 
                         $res3 = mysqli_query($conn, $sql3);
 
