@@ -1,7 +1,6 @@
 <?php
     $id = $_POST['homeownerId'];
     $waterUsage = $_POST['waterUsage'];
-    $recordDate = $_POST['sqlDate'];
 
     $conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
     //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
@@ -26,7 +25,7 @@
 
     $sql2 = "select HOMEOWNER, `WATERUSAGE(L)`, RECORDDATE
     from waterusage
-    where HOMEOWNER = $id and RECORDDATE = (SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id)";
+    where HOMEOWNER = '".$id."' and RECORDDATE = (SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id)";
 
     if($conn) {
         $res1 = mysqli_query($conn, $sql1);
