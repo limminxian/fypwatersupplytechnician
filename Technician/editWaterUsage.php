@@ -77,10 +77,6 @@
                         $recordDate = $row2['RECORDDATE'];
 
                         $amount = $rate * $waterUsage;
-                        echo ($rate);
-                        echo ($waterUsage);
-                        echo ($amount);
-
                         $sql3 = "select BILLINGDATE from bill where HOMEOWNER = '".$id."' 
                         and BILLINGDATE = (SELECT MAX(BILLINGDATE) from bill where HOMEOWNER = $id)";
 
