@@ -9,7 +9,7 @@
 
     //insert waterusage
     iF($conn) {
-        $sql = "insert into waterusage (HOMEOWNER, WATERUSAGE) values ('".$id."', '".$waterUsage."')";
+        $sql = "insert into waterusage (HOMEOWNER, WATERUSAGE(L)) values ('".$id."', '".$waterUsage."')";
         $res = mysqli_query($conn, $sql);
         if($res) {
             echo "Water usage added successfully";
@@ -23,7 +23,7 @@
     where s.NAME = 'water supply'
     and r.EFFECTDATE = (SELECT MAX(r.EFFECTDATE) from servicerate r inner join servicetype s on s.ID = r.SERVICE where s.NAME = 'water supply');";
 
-    $sql2 = "select HOMEOWNER, WATERUSAGE, RECORDDATE
+    $sql2 = "select HOMEOWNER, WATERUSAGE(L), RECORDDATE
     from waterusage
     where id=$id";
 
@@ -40,7 +40,7 @@
                 if($res2) {
                     while($row2 = mysqli_fetch_assoc($res2)) {
                         $homeOwner = $row2['HOMEOWNER'];
-                        $waterUsage = $row2['WATERUSAGE'];
+                        $waterUsage = $row2['WATERUSAGE(L)'];
                         $recordDate = $row2['RECORDDATE'];
 
                         $amount = $rate * $waterUsage;
