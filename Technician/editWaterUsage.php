@@ -10,7 +10,7 @@
     //update waterusage
     if($conn) {
         $dateSql = "SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id";
-        $dateRes = mysqli_query($conn, $sdateSql);
+        $dateRes = mysqli_query($conn, $dateSql);
         if($dateRes) {
             while($dateRow = mysqli_fetch_assoc($dateRes)) {
                 $maxRecordDate = $dateRow['RECORDDATE'];
