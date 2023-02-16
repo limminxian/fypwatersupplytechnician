@@ -9,7 +9,7 @@
         $sql = "select h.ID, h.STREET, h.UNITNO, h.HOUSETYPE
             from homeowner h
             inner join company c on h.SUBSCRIBE = c.ID
-            where POSTALCODE = '$postalCode'";
+            where h.POSTALCODE = '$postalCode'";
         $res = mysqli_query($conn, $sql);
         $addresses = array(); 
         if($res) {
