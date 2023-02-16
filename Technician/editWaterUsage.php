@@ -9,7 +9,7 @@
 
     //insert waterusage
     if($conn) {
-        $sql = "UPDATE waterusage SET `WATERUSAGE(L)` = '".$waterUsage."' WHERE HOMEOWNER = '".$id."'";
+        $sql = "UPDATE waterusage SET `WATERUSAGE(L)` = '".$waterUsage."' WHERE HOMEOWNER = '".$id."' and RECORDDATE = (SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id";
         $res = mysqli_query($conn, $sql);
         if($res) {
             echo "Water usage editted successfully";
