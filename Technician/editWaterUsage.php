@@ -14,7 +14,7 @@
         if($dateRes) {
             while($dateRow = mysqli_fetch_assoc($dateRes)) {
                 $maxRecordDate = $dateRow['RECORDDATE'];
-                $sql = "UPDATE waterusage SET `WATERUSAGE(L)` = '".$waterUsage."' WHERE HOMEOWNER = '".$id."' and RECORDDATE = $maxRecordDate)";
+                $sql = "UPDATE waterusage SET `WATERUSAGE(L)` = '".$waterUsage."' WHERE HOMEOWNER = '".$id."' and RECORDDATE = $maxRecordDate";
                 $res = mysqli_query($conn, $sql);
                 if($res) {
                     echo "Water usage editted successfully";
