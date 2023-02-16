@@ -7,7 +7,8 @@
         #landed - street & id
         $postalCode = $_GET['postalCode'];
         $sql = "select ID, STREET, UNITNO, HOUSETYPE
-            from homeowner h left join waterusage w on h.ID = w.HOMEOWNER
+            from homeowner h
+            inner join company c on h.SUBSCRIBE = c.ID
             where POSTALCODE = '$postalCode'";
         $res = mysqli_query($conn, $sql);
         $addresses = array(); 
