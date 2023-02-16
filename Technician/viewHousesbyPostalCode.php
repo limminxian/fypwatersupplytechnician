@@ -6,7 +6,7 @@
         #hdb-apartment - unit # & id
         #landed - street & id
         $postalCode = $_GET['postalCode'];
-        $sql = "select ID, STREET, UNITNO, HOUSETYPE, WATERUSAGE
+        $sql = "select ID, STREET, UNITNO, HOUSETYPE, WATERUSAGE(L)
             from homeowner h left join waterusage w on h.ID = w.HOMEOWNER
             where POSTALCODE = '$postalCode'";
         $res = mysqli_query($conn, $sql);
@@ -14,7 +14,7 @@
         if($res) {
             while($row = mysqli_fetch_assoc($res)) {
                 $addresses[] = array("status" => "success", "message" => "Data fetched", "ID" => $row['ID'], "STREET" => $row['STREET'], 
-                 "UNITNO" => $row['UNITNO'], "HOUSETYPE" => $row['HOUSETYPE'], "WATERUSAGE" => $row["WATERUSAGE"]);
+                 "UNITNO" => $row['UNITNO'], "HOUSETYPE" => $row['HOUSETYPE'], "WATERUSAGE(L)" => $row["WATERUSAGE(L)"]);
             } 
         } else $addresses = array("status" => "failed", "message" => "Having trouble fetching the data");
     } else $addresses = array("status" => "failed", "message" => "Database connection failed");
