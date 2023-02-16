@@ -91,7 +91,7 @@
                                 $billingDate = $row3['BILLINGDATE'];
                                 
                                 $sql4 = "update bill set AMOUNT = '".$amount."' WHERE HOMEOWNER = '".$id."' 
-                                and BILLINGDATE = $billingDate";
+                                and BILLINGDATE = '".$billingDate."'";
 
                                 $res4 = mysqli_query($conn, $sql4);
 
