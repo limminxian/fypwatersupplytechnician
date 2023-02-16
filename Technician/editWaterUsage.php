@@ -77,6 +77,9 @@
                         $recordDate = $row2['RECORDDATE'];
 
                         $amount = $rate * $waterUsage;
+                        echo ($rate);
+                        echo ($waterUsage);
+                        echo ($amount);
 
                         $sql3 = "select BILLINGDATE from bill where HOMEOWNER = '".$id."' 
                         and BILLINGDATE = (SELECT MAX(BILLINGDATE) from bill where HOMEOWNER = $id)";
@@ -87,7 +90,7 @@
                             while($row3 = mysqli_fetch_assoc($res3)) {
                                 $billingDate = $row3['BILLINGDATE'];
                                 
-                                $sql4 = "update bill set `AMOUNT` = '".$amount."' WHERE HOMEOWNER = '".$id."' 
+                                $sql4 = "update bill set AMOUNT = '".$amount."' WHERE HOMEOWNER = '".$id."' 
                                 and BILLINGDATE = $billingDate";
 
                                 $res4 = mysqli_query($conn, $sql4);
