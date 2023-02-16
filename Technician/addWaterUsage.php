@@ -26,7 +26,7 @@
 
     $sql2 = "select HOMEOWNER, `WATERUSAGE(L)`, RECORDDATE
     from waterusage
-    where HOMEOWNER = $id and RECORDDATE = (SELECT MAX(RECORDDATE) from waterusage)";
+    where HOMEOWNER = $id and RECORDDATE = (SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id)";
 
     if($conn) {
         $res1 = mysqli_query($conn, $sql1);
