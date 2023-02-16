@@ -7,13 +7,20 @@
     //$conn = mysqli_connect("localhost", "root", "", "fyp");
     
 
-    //insert waterusage
+    //update waterusage
     if($conn) {
-        $sql = "UPDATE waterusage SET `WATERUSAGE(L)` = '".$waterUsage."' WHERE HOMEOWNER = '".$id."' and RECORDDATE = (SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id)";
-        $res = mysqli_query($conn, $sql);
-        if($res) {
-            echo "Water usage editted successfully";
-        } else echo "Water usage not editted successfully";
+        $dateSql = "SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id";
+        $dateRes = mysqli_query($conn, $sql);
+        if($dateRes) {
+            while($dateRow = mysqli_fetch_assoc($dateRes)) {
+                $maxRecordDate = $dateRow['RECORDDATE'];
+                $sql = "UPDATE waterusage SET `WATERUSAGE(L)` = '".$waterUsage."' WHERE HOMEOWNER = '".$id."' and RECORDDATE = $maxRecordDate)";
+                $res = mysqli_query($conn, $sql);
+                if($res) {
+                    echo "Water usage editted successfully";
+                } else echo "Water usage not editted successfully";
+            }
+        } else echo "Not able to fetch maximum date"
     } else echo "Connection failed";
     
 
