@@ -7,32 +7,6 @@
     //$conn = mysqli_connect("localhost", "root", "", "fyp");
     
 
-// //getting latest water usage for one homeowner
-// "SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id";
-
-// //updating latest water usage
-// "UPDATE waterusage SET `WATERUSAGE(L)` = '".$waterUsage."' WHERE HOMEOWNER = '".$id."' and RECORDDATE = $maxRecordDate";
-     
-// // get the latest rate
-// "select r.RATE, s.ID
-//     from servicetype s inner join servicerate r
-//     on s.ID = r.SERVICE
-//     where s.NAME = 'water supply'
-//     and r.EFFECTDATE = (SELECT MAX(r.EFFECTDATE) from servicerate r inner join servicetype s on s.ID = r.SERVICE where s.NAME = 'water supply');";
-
-// // getting latest water usage
-//  "select HOMEOWNER, `WATERUSAGE(L)`, RECORDDATE
-//     from waterusage
-//     where HOMEOWNER = '".$id."' and RECORDDATE = (SELECT MAX(RECORDDATE) from waterusage where HOMEOWNER = $id)";
-
-// //select latest billing for one homeowner
-//  "select BILLINGDATE from bill where HOMEOWNER = '".$id."' 
-//     and BILLINGDATE = (SELECT MAX(BILLINGDATE) from bill where HOMEOWNER = $id)";
-
-// //update amount in bill
-// "update bill set `AMOUNT` = '".$amount."' WHERE HOMEOWNER = '".$id."' 
-// and BILLINGDATE = $billingDate";
-
     //update waterusage
     if($conn) {
         $sql1 = "SELECT MAX(RECORDDATE) as RECORDDATE from waterusage where HOMEOWNER = $id";
