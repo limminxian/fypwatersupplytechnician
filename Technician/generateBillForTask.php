@@ -1,11 +1,9 @@
-<?php
+<?php include_once 'conn.php';
     $status = $_POST['status'];
     $ticketId = $_POST['ticketId'];
     $serviceType = $_POST['serviceType'];
 
-    $conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bc292174f8cae7", "68916e25", "heroku_a43ceec7a5c075b");
-    //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
-    //$conn = mysqli_connect("localhost", "root", "", "fyp");
+    $conn = getDB();
     
     if($conn) {
         $sql = "UPDATE ticket SET `STATUS` = '".$status."' WHERE ID = '".$ticketId."'";
