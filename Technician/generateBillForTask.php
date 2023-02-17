@@ -31,7 +31,7 @@
     s.EFFECTDATE = (SELECT MAX(s.EFFECTDATE) from servicerate s where s.SERVICE = $serviceType);";
 
 	$SQL = "SELECT COMPANY FROM STAFF WHERE ID = '".$technicianId."'";
-	$Result = mysqli_query($connection, $SQL);
+	$Result = mysqli_query($conn, $SQL);
 	$companyID = mysqli_fetch_row($Result)[0];
 	
     if($conn) {
