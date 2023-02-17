@@ -10,7 +10,7 @@
 	$companyID = null;
 	
 	$SQL = "SELECT SUBSCRIBE FROM HOMEOWNER WHERE ID = '".$id."'";
-	$Result = mysqli_query($connection, $SQL);
+	$Result = mysqli_query($conn, $SQL);
 	if (mysqli_num_rows($Result) != 0) {
 		$companyID = mysqli_fetch_row($Result)[0];
 	} else {
