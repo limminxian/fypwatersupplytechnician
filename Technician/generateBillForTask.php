@@ -2,6 +2,7 @@
     $status = $_POST['status'];
     $ticketId = $_POST['ticketId'];
     $serviceType = $_POST['serviceType'];
+    $technicianId = $_POST['technicianId'];
 
     $conn = getDB();
     
@@ -10,6 +11,15 @@
         $res = mysqli_query($conn, $sql);
        if($res) {
             echo "Successfully updated ticket";
+        }
+    } else echo "Connection failed";
+
+    
+    if($conn) {
+        $workloadSql = "UPDATE staff SET `WORKLOAD` = WORKLOAD - 1 WHERE ID = '".$technicianId."'";
+        $workloadRes = mysqli_query($conn, $workloadSql);
+        if($workloadRes) {
+            echo "Successfully updated workload";
         }
     } else echo "Connection failed";
 
