@@ -7,7 +7,18 @@
     //$conn = mysqli_connect("us-cdbr-east-06.cleardb.net", "bbd12ae4b2fcc3", "df9ea7aa", "heroku_80d6ea926f679b3");
     //$conn = mysqli_connect("localhost", "root", "", "fyp");
     
-
+	$companyID = null;
+	
+	$SQL = "SELECT SUBSCRIBE FROM HOMEOWNER WHERE ID = '".$id."'";
+	$Result = mysqli_query($connection, $SQL);
+	if (mysqli_num_rows($Result) != 0) {
+		$companyID = mysqli_fetch_row($Result)[0];
+	} else {
+		$companyID = null;
+		echo "homeowner not subscribed yet";
+	}
+	
+	
     //insert waterusage
     iF($conn) {
         $sql = "insert into waterusage (RECORDDATE, HOMEOWNER, `WATERUSAGE(L)`) values ('".$recordDate."', '".$id."', '".$waterUsage."')";
@@ -46,8 +57,8 @@
 
                         $amount = $rate * $waterUsage;
 
-                        $sql3 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT)  VALUES 
-                        (DATE_ADD('".$recordDate."', INTERVAL 1 DAY), '".$homeOwner."', '".$type."', '".$amount."')";
+                        $sql3 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT, COMPANY)  VALUES 
+                        (DATE_ADD('".$recordDate."', INTERVAL 1 DAY), '".$homeOwner."', '".$type."', '".$amount."', '".$companyID."')";
                         $res3 = mysqli_query($conn, $sql3);
                         
                         if($res3) {
