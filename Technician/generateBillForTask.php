@@ -30,6 +30,10 @@
     where t.ID = $ticketId and 
     s.EFFECTDATE = (SELECT MAX(s.EFFECTDATE) from servicerate s where s.SERVICE = $serviceType);";
 
+	$SQL = "SELECT COMPANY FROM STAFF WHERE ID = '".$technicianId."'";
+	$Result = mysqli_query($connection, $SQL);
+	$companyID = mysqli_fetch_row($Result)[0];
+	
     if($conn) {
         $res1 = mysqli_query($conn, $sql1);
         if($res1) {
@@ -41,7 +45,7 @@
                     $serviceDate = $row['SERVICEDATE'];
                     $serviceRate = $row['RATE'];
                     $count++;
-                    $sql2 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT) values ('".$serviceDate."', '".$homeowner."', '".$type."', '".$serviceRate."')";
+                    $sql2 = "insert into bill (BILLINGDATE, HOMEOWNER, SERVICE, AMOUNT, COMPANY) values ('".$serviceDate."', '".$homeowner."', '".$type."', '".$serviceRate."', '".$companyID."')";
                     $res2 = mysqli_query($conn, $sql2);
                     if($res2) {
                         echo "Successfully inserted bill";
